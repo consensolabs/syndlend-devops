@@ -1,0 +1,92 @@
+version: '3.3'
+services:
+  Notary:
+    networks:
+      corda:
+        ipv4_address: 10.5.0.5
+    build:
+      context: .
+      args:
+        BUILDTIME_CORDA_VERSION: 3.3
+    env_file:
+      - ./corda_docker.env
+    ports:
+      - "8004:8004"
+    image: corda/node:3.3
+    container_name: Notary
+    volumes:
+      - ./nodes/Notary/node.conf:/opt/corda/node.conf
+      - ./nodes/Notary/network-parameters:/opt/corda/network-parameters
+      - ./nodes/Notary/additional-node-infos:/opt/corda/additional-node-infos
+      - ./nodes/Notary/certificates/:/opt/corda/certificates/
+  Agent:
+    networks:
+      corda:
+        ipv4_address: 10.5.0.6
+    build:
+      context: .
+      args:
+        BUILDTIME_CORDA_VERSION: 3.3
+    env_file:
+      - ./corda_docker.env
+    ports:
+      - "8002:8002"
+    image: corda/node:3.3
+    container_name: Agent
+    volumes:
+      - ./nodes/Agent/node.conf:/opt/corda/node.conf
+      - ./nodes/Agent/network-parameters:/opt/corda/network-parameters
+      - ./nodes/Agent/additional-node-infos:/opt/corda/additional-node-infos
+      - ./nodes/Agent/certificates/:/opt/corda/certificates/
+    depends_on:
+      - Notary
+  Lender:
+    networks:
+      corda:
+        ipv4_address: 10.5.0.7
+    build:
+      context: .
+      args:
+        BUILDTIME_CORDA_VERSION: 3.3
+    env_file:
+      - ./corda_docker.env
+    ports:
+      - "8003:8003"
+    image: corda/node:3.3
+    container_name: Lender
+    volumes:
+      - ./nodes/Lender/node.conf:/opt/corda/node.conf
+      - ./nodes/Lender/network-parameters:/opt/corda/network-parameters
+      - ./nodes/Lender/additional-node-infos:/opt/corda/additional-node-infos
+      - ./nodes/Lender/certificates/:/opt/corda/certificates/
+    depends_on:
+      - Notary
+  Borrower:
+    networks:
+      corda:
+        ipv4_address: 10.5.0.8
+    build:
+      context: .
+      args:
+        BUILDTIME_CORDA_VERSION: 3.3
+    env_file:
+      - ./corda_docker.env
+    ports:
+      - "8001:8001"
+    image: corda/node:3.3
+    container_name: Borrower
+    volumes:
+      - ./nodes/Borrower/node.conf:/opt/corda/node.conf
+      - ./nodes/Borrower/network-parameters:/opt/corda/network-parameters
+      - ./nodes/Borrower/additional-node-infos:/opt/corda/additional-node-infos
+      - ./nodes/Borrower/certificates/:/opt/corda/certificates/
+    depends_on:
+      - Notary
+
+networks:
+  corda:
+      driver: bridge
+      ipam:
+        driver: default
+        config:
+          - subnet: 10.5.0.0/24
