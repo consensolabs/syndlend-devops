@@ -1,5 +1,16 @@
 # Deploying Corda nodes using docker
 
+<p align="center">
+  <a href="https://syndlend.consensolabs.com" target="_blank">
+    <img src="https://github.com/consensolabs/syndlend-client/raw/master/src/images/syndlend-logo.png">
+  </a>
+</p>
+
+![version](https://img.shields.io/badge/version-0.1.0beta-blue)
+[![docs](https://img.shields.io/badge/docs-0.1.0-green)](https://docs.syndlend.consensolabs.com/)
+![Contributors](https://img.shields.io/github/contributors/consensolabs/syndlend-client)
+[![Follow](https://img.shields.io/twitter/follow/consensolabs?style=social&logo=twitter)](https://twitter.com/consensolabs)
+
 
 ## 1. Install Docker in Ubuntu
 **Docker 17.09 and up is required for this Dockerfile.**
