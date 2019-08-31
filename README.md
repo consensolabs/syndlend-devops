@@ -8,7 +8,7 @@
 
 ![version](https://img.shields.io/badge/version-0.1.0beta-blue)
 [![docs](https://img.shields.io/badge/docs-0.1.0-green)](https://docs.syndlend.consensolabs.com/)
-![Contributors](https://img.shields.io/github/contributors/consensolabs/syndlend-client)
+![Contributors](https://img.shields.io/github/contributors/consensolabs/syndlend-devops)
 [![Follow](https://img.shields.io/twitter/follow/consensolabs?style=social&logo=twitter)](https://twitter.com/consensolabs)
 
 
